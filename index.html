@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Hawthorne | Grace with Gravity</title>
+  <meta name="description" content="Studio Hawthorne builds elegant websites, brand presence, and digital systems for ventures of substance." />
+  <style>
+    :root {
+      --ivory: #f4ede1;
+      --paper: #fbf6ec;
+      --sand: #d8c3a5;
+      --brass: #c6a15b;
+      --bronze: #7a5c45;
+      --rose: #b58a7a;
+      --navy: #0d1b2a;
+      --ink: #171717;
+      --smoke: #6f6a61;
+      --line: rgba(122, 92, 69, 0.22);
+      --gold-line: rgba(198, 161, 91, 0.48);
+      --shadow: 0 38px 90px rgba(13, 27, 42, 0.22);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Avenir Next", "Inter", "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99;
+      opacity: 0.35;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(198, 161, 91, 0.10), transparent 26%),
+        radial-gradient(circle at 82% 64%, rgba(181, 138, 122, 0.10), transparent 30%),
+        repeating-linear-gradient(0deg, rgba(23,23,23,0.018), rgba(23,23,23,0.018) 1px, transparent 1px, transparent 5px);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .serif { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+    .italic { font-style: italic; color: var(--smoke); }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3.2vw;
+      color: var(--ink);
+      background: rgba(251, 246, 236, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(122, 92, 69, 0.12);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-size: 0.72rem;
+    }
+
+    .topbar strong { letter-spacing: 0.22em; }
+    .topbar nav { display: flex; gap: 34px; color: #70685f; }
+
+    .hero {
+      min-height: 100vh;
+      padding: 110px 3.2vw 42px;
+      display: grid;
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 50.5%;
+      top: 86px;
+      bottom: 38px;
+      width: 1px;
+      background: rgba(122, 92, 69, 0.16);
+      z-index: 0;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5vh 0 4vh;
+      max-width: 630px;
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      color: #777069;
+      font-size: 0.72rem;
+      margin-bottom: 42px;
+    }
+
+    h1 {
+      font-size: clamp(4.8rem, 8.8vw, 10.5rem);
+      line-height: 0.82;
+      letter-spacing: -0.07em;
+      margin-bottom: 38px;
+    }
+
+    .hero-copy p {
+      max-width: 470px;
+      color: #70685f;
+      font-size: 1.08rem;
+      line-height: 1.9;
+      margin-bottom: 38px;
+    }
+
+    .linkline {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      width: max-content;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.72rem;
+    }
+
+    .visual-stage {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 0.72fr;
+      grid-template-rows: 1fr 0.66fr;
+      gap: 18px;
+      padding: 28px 0 0 20px;
+      min-height: calc(100vh - 152px);
+    }
+
+    .panel {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(122, 92, 69, 0.18);
+      box-shadow: var(--shadow);
+      background: var(--ivory);
+    }
+
+    .aviatrix {
+      grid-row: span 2;
+      min-height: 690px;
+      background:
+        linear-gradient(180deg, rgba(13,27,42,0.02), rgba(13,27,42,0.74)),
+        radial-gradient(circle at 54% 28%, rgba(244,237,225,0.82), transparent 17%),
+        radial-gradient(circle at 62% 32%, rgba(198,161,91,0.36), transparent 28%),
+        linear-gradient(135deg, #f3dfbf 0%, #bd9463 44%, #0d1b2a 100%);
+    }
+
+    .aviatrix::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(108deg, transparent 0 38%, rgba(244,237,225,0.68) 38% 41%, transparent 41% 100%),
+        radial-gradient(ellipse at 62% 55%, rgba(17,17,17,0.35), transparent 24%),
+        linear-gradient(13deg, transparent 0 52%, rgba(13,27,42,0.55) 52% 54%, transparent 54% 100%);
+      opacity: 0.78;
+    }
+
+    .aviatrix::after {
+      content: "";
+      position: absolute;
+      left: 9%;
+      right: 9%;
+      top: 13%;
+      bottom: 13%;
+      border: 1px solid rgba(244,237,225,0.28);
+    }
+
+    .caption {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: 34px;
+      color: var(--paper);
+      z-index: 2;
+    }
+
+    .caption .small {
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--brass);
+      font-size: 0.68rem;
+      margin-bottom: 12px;
+    }
+
+    .caption h2 {
+      font-size: clamp(2.2rem, 4.2vw, 5rem);
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      max-width: 580px;
+    }
+
+    .jazz {
+      background:
+        linear-gradient(180deg, rgba(17,17,17,0.12), rgba(17,17,17,0.78)),
+        radial-gradient(circle at 65% 30%, rgba(198,161,91,0.45), transparent 26%),
+        linear-gradient(135deg, #111111 0%, #34251f 52%, #b58a7a 100%);
+      color: var(--paper);
+      min-height: 320px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .jazz blockquote {
+      font-size: clamp(1.45rem, 2.25vw, 2.35rem);
+      line-height: 1.16;
+      letter-spacing: -0.035em;
+    }
+
+    .jazz cite {
+      display: block;
+      margin-top: 18px;
+      color: var(--brass);
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 0.67rem;
+    }
+
+    .map {
+      min-height: 330px;
+      background:
+        linear-gradient(135deg, rgba(244,237,225,0.86), rgba(216,195,165,0.74)),
+        repeating-linear-gradient(31deg, rgba(122,92,69,0.16), rgba(122,92,69,0.16) 1px, transparent 1px, transparent 36px),
+        repeating-linear-gradient(-19deg, rgba(198,161,91,0.18), rgba(198,161,91,0.18) 1px, transparent 1px, transparent 48px);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .map .coords {
+      align-self: flex-end;
+      text-align: right;
+      color: var(--bronze);
+      font-family: "Courier New", monospace;
+      font-size: 0.78rem;
+      line-height: 1.9;
+    }
+
+    .seal {
+      width: 122px;
+      height: 122px;
+      border-radius: 50%;
+      border: 1px solid var(--brass);
+      display: grid;
+      place-items: center;
+      color: var(--navy);
+      font-family: Georgia, serif;
+      font-size: 3.1rem;
+      background: rgba(251,246,236,0.7);
+    }
+
+    section {
+      padding: 120px 3.2vw;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 0.84fr 1.16fr;
+      gap: 80px;
+      max-width: 1320px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .section-title {
+      font-size: clamp(3rem, 6vw, 7rem);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
+    }
+
+    .body-copy {
+      color: #6d655c;
+      max-width: 720px;
+      font-size: clamp(1.08rem, 1.6vw, 1.32rem);
+      line-height: 1.9;
+    }
+
+    .services {
+      background: var(--navy);
+      color: var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.45;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(198,161,91,0.18), transparent 26%),
+        linear-gradient(90deg, rgba(244,237,225,0.035) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(244,237,225,0.035) 1px, transparent 1px);
+      background-size: auto, 86px 86px, 86px 86px;
+    }
+
+    .services > * { position: relative; z-index: 1; }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(198,161,91,0.26);
+      margin-top: 70px;
+      max-width: 1320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .service {
+      min-height: 300px;
+      padding: 32px;
+      background: rgba(13,27,42,0.93);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service span {
+      color: var(--brass);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 0.68rem;
+    }
+
+    .service h3 {
+      font-size: 2.1rem;
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin: 28px 0 18px;
+    }
+
+    .service p { color: rgba(244,237,225,0.68); }
+
+    .work {
+      background: var(--paper);
+    }
+
+    .portfolio {
+      max-width: 1320px;
+      margin: 70px auto 0;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+    }
+
+    .project {
+      min-height: 520px;
+      border: 1px solid var(--line);
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      color: var(--paper);
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(13,27,42,0.9) 78%),
+        radial-gradient(circle at 70% 25%, rgba(198,161,91,0.42), transparent 24%),
+        linear-gradient(135deg, #d8c3a5, #7a5c45 44%, #0d1b2a 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .project.small {
+      min-height: 249px;
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(17,17,17,0.76) 82%),
+        linear-gradient(135deg, #111111, #7a5c45 62%, #c6a15b);
+    }
+
+    .project h3 {
+      font-size: clamp(2.4rem, 5vw, 5.6rem);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
+      margin-bottom: 18px;
+    }
+
+    .project p { max-width: 620px; color: rgba(244,237,225,0.76); }
+    .stack { display: grid; gap: 22px; }
+
+    .statement {
+      background: var(--ink);
+      color: var(--paper);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .statement::before {
+      content: "";
+      position: absolute;
+      inset: 32px;
+      border: 1px solid rgba(198,161,91,0.28);
+    }
+
+    .statement h2 {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 0 auto;
+      font-size: clamp(3.2rem, 7.6vw, 9rem);
+      line-height: 0.84;
+      letter-spacing: -0.08em;
+    }
+
+    .contact {
+      background:
+        linear-gradient(135deg, rgba(198,161,91,0.12), transparent 36%),
+        var(--ivory);
+    }
+
+    .contact-box {
+      max-width: 1320px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      padding: clamp(34px, 6vw, 82px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 44px;
+      align-items: end;
+      background: rgba(251,246,236,0.68);
+    }
+
+    .contact h2 {
+      font-size: clamp(3.2rem, 7vw, 8rem);
+      line-height: 0.84;
+      letter-spacing: -0.08em;
+      margin-bottom: 24px;
+    }
+
+    .contact p { color: #6d655c; max-width: 620px; font-size: 1.1rem; }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 0 28px;
+      border: 1px solid var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.72rem;
+      white-space: nowrap;
+      transition: 0.25s ease;
+    }
+
+    .button:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+
+    footer {
+      background: var(--navy);
+      color: rgba(244,237,225,0.7);
+      padding: 32px 3.2vw;
+      display: flex;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.7rem;
+    }
+
+    @media (max-width: 1050px) {
+      .hero, .section-grid, .portfolio, .contact-box { grid-template-columns: 1fr; }
+      .hero::after { display: none; }
+      .visual-stage { padding-left: 0; grid-template-columns: 1fr; grid-template-rows: auto; }
+      .aviatrix { grid-row: auto; min-height: 540px; }
+      .service-list { grid-template-columns: repeat(2, 1fr); }
+      .topbar nav { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar { height: 64px; padding: 0 20px; }
+      .hero { padding: 92px 20px 30px; }
+      section { padding: 82px 20px; }
+      h1 { font-size: clamp(4rem, 19vw, 6rem); }
+      .service-list { grid-template-columns: 1fr; }
+      .portfolio { gap: 16px; }
+      .project, .project.small { min-height: 380px; }
+      .contact-box { padding: 34px 24px; }
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <strong>Studio Hawthorne</strong>
+    <nav>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span>Vancouver, BC</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="kicker">Est. 2026 · Design House</div>
+        <h1 class="serif">Grace with <span class="italic">gravity.</span></h1>
+        <p>
+          Studio Hawthorne builds elegant websites, cinematic brand presence, and strategic digital systems for ventures of substance.
+        </p>
+        <a class="linkline" href="#work">Enter the studio →</a>
+      </div>
+
+      <div class="visual-stage" aria-label="Studio Hawthorne mood board inspired layout">
+        <article class="panel aviatrix">
+          <div class="caption">
+            <div class="small">Altitude · Elegance · Execution</div>
+            <h2 class="serif">A digital atelier for beautiful, serious work.</h2>
+          </div>
+        </article>
+
+        <article class="panel jazz">
+          <blockquote class="serif">“Not fragile. Not ornamental. Designed to arrive.”</blockquote>
+          <cite>Studio Hawthorne</cite>
+        </article>
+
+        <article class="panel map">
+          <div class="coords">
+            (0.400, 0.000, 0.500) poise<br />
+            (0.700, 0.000, 0.700) command<br />
+            (0.980, 0.850, 0.950) Jackson
+          </div>
+          <div class="seal">SH</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="philosophy">
+      <div class="section-grid">
+        <div>
+          <div class="kicker">Philosophy</div>
+          <h2 class="section-title serif">We design presence.</h2>
+        </div>
+        <p class="body-copy">
+          We build digital homes that feel considered from the first glance: beautiful enough to be remembered, clear enough to be trusted, and practical enough to work. The work is cinematic, but never costume. Refined, but never empty. Strategic, but never soulless.
+        </p>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="section-grid">
+        <div>
+          <div class="kicker">Services</div>
+          <h2 class="section-title serif">Beauty with utility.</h2>
+        </div>
+        <p class="body-copy" style="color: rgba(244,237,225,0.72);">
+          Websites, identities, copy, AI-assisted workflows, and digital systems for founders, creators, churches, nonprofits, and small businesses ready to look as real as they are.
+        </p>
+      </div>
+
+      <div class="service-list">
+        <article class="service"><span>01</span><div><h3 class="serif">Signature Websites</h3><p>Responsive, refined websites with atmosphere, clarity, and trust.</p></div></article>
+        <article class="service"><span>02</span><div><h3 class="serif">Brand Presence</h3><p>Visual language, positioning, and copy that make the work legible.</p></div></article>
+        <article class="service"><span>03</span><div><h3 class="serif">Creative Systems</h3><p>AI-assisted workflows shaped by taste, judgment, and restraint.</p></div></article>
+        <article class="service"><span>04</span><div><h3 class="serif">Digital Refinement</h3><p>Sharper pages, cleaner structure, stronger signals, better arrival.</p></div></article>
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <div class="section-grid">
+        <div>
+          <div class="kicker">Selected Work</div>
+          <h2 class="section-title serif">Concepts from the studio floor.</h2>
+        </div>
+        <p class="body-copy">
+          Early portfolio pieces will demonstrate range: humane systems, practical local web, cinematic landing pages, and brand worlds with enough gravity to stand on their own.
+        </p>
+      </div>
+
+      <div class="portfolio">
+        <article class="project">
+          <div class="kicker">Human Systems</div>
+          <h3 class="serif">BridgeHaven</h3>
+          <p>Benevolence infrastructure for communities that want care to be dignified, accountable, and real.</p>
+        </article>
+        <div class="stack">
+          <article class="project small"><div class="kicker">Packaging Intelligence</div><h3 class="serif">Laluna</h3><p>AI-assisted packaging and prepress systems.</p></article>
+          <article class="project small"><div class="kicker">Local Web</div><h3 class="serif">North Shore</h3><p>Beautiful, functional sites for overlooked builders.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement">
+      <h2 class="serif">Wind, brass, ink, and intention.</h2>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-box">
+        <div>
+          <div class="kicker">Begin</div>
+          <h2 class="serif">Let’s build something enduring.</h2>
+          <p>For ventures seeking digital presence with beauty, intelligence, and force.</p>
+        </div>
+        <a class="button" href="mailto:hello@studiohawthorne.com">Contact Studio Hawthorne</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Studio Hawthorne</span>
+    <span>Grace with Gravity</span>
+    <span>Vancouver, BC</span>
+  </footer>
+</body>
+</html>
